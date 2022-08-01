@@ -206,6 +206,7 @@ export interface FastImageStaticProperties {
     preload: (sources: Source[]) => void
     clearMemoryCache: () => Promise<void>
     clearDiskCache: () => Promise<void>
+    getCachePath: (source: Source) => Promise<string>
 }
 
 const FastImage: React.ComponentType<FastImageProps> &
@@ -219,6 +220,9 @@ FastImage.priority = priority
 
 FastImage.preload = (sources: Source[]) =>
     FastImageViewNativeModule.preload(sources)
+    
+FastImage.getCachePath = (source: Source) =>
+    FastImageViewNativeModule.getCachePath(source)
 
 FastImage.clearMemoryCache = () => FastImageViewNativeModule.clearMemoryCache()
 
